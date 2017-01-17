@@ -1,3 +1,3 @@
-# Activities
+# unStrava
 
-Managing activities in an open and structured way.
+Manage activity data exported via Strava's bulk export.
