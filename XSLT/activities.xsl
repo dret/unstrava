@@ -31,5 +31,17 @@
         <xsl:result-document href="{$user}.xml" method="xml" indent="yes" exclude-result-prefixes="xs gpx saxon">
             <xsl:copy-of select="$activities"/>
         </xsl:result-document>
+        <xsl:result-document href="{$user}.csv" method="text">
+            <xsl:for-each select="$activities/activities/activity">
+                <xsl:value-of select="@date"/>
+                <xsl:text>,"</xsl:text>
+                <xsl:value-of select="@name"/>
+                <xsl:text>",</xsl:text>
+                <xsl:value-of select="@type"/>
+                <xsl:text>,</xsl:text>
+                <xsl:value-of select="concat(hours-from-duration(@duration), ':', minutes-from-duration(@duration), ':', seconds-from-duration(@duration))"/>
+                <xsl:text>&#xa;</xsl:text>
+            </xsl:for-each>
+        </xsl:result-document>
     </xsl:template>
 </xsl:stylesheet>
