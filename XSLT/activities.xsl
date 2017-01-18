@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gpx="http://www.topografix.com/GPX/1/1" xmlns:saxon="http://saxon.sf.net/" version="3.0">
     <!-- -->
-    <xsl:variable name="data" select="'../data/'"/>
+    <xsl:variable name="data" select="'../GPX/'"/>
     <xsl:variable name="user" select="'chris'"/>
     <!-- -->
     <xsl:template match="/">
