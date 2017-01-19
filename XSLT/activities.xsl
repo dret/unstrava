@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="3.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gpx="http://www.topografix.com/GPX/1/1" xmlns:saxon="http://saxon.sf.net/">
+<xsl:stylesheet version="3.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gpx="http://www.topografix.com/GPX/1/1" xmlns:saxon="http://saxon.sf.net/" xmlns:gpxslt="http://github.com/dret/unstrava">
     <!-- -->
     <xsl:include href="GPX.xsl"/>
     <!-- -->
@@ -9,7 +9,7 @@
     <!-- -->
     <xsl:template match="/">
         <xsl:variable name="activities">
-            <activities>
+            <activities xsl:exclude-result-prefixes="xs gpx saxon gpxslt">
                 <xsl:for-each select="uri-collection(concat($data, $user, '/', '?select=*.gpx'))">
                     <xsl:variable name="file" select="."/>
                     <xsl:for-each select="doc(.)!saxon:discard-document(.)">
@@ -30,8 +30,8 @@
                 </xsl:for-each>
             </activities>
         </xsl:variable>
-        <xsl:result-document href="{$user}.xml" method="xml" indent="yes" exclude-result-prefixes="xs gpx saxon">
-            <xsl:copy-of select="$activities"/>
+        <xsl:result-document href="{$user}.xml" method="xml" indent="yes" exclude-result-prefixes="xs gpx saxon gpxslt">
+            <xsl:sequence select="$activities"/>
         </xsl:result-document>
         <xsl:result-document href="{$user}.csv" method="text">
             <xsl:for-each select="$activities/activities/activity">
