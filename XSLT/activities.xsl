@@ -25,6 +25,7 @@
                             <xsl:if test="count(/gpx:gpx/gpx:trk/gpx:trkseg/gpx:trkpt) gt 2">
                                 <xsl:attribute name="duration" select="xs:dateTime(/gpx:gpx/gpx:trk/gpx:trkseg/gpx:trkpt[last()]/gpx:time) - xs:dateTime(/gpx:gpx/gpx:trk/gpx:trkseg/gpx:trkpt[1]/gpx:time)"/>
                                 <xsl:attribute name="ascent" select="gpxslt:trk-ascent(/gpx:gpx)"/>
+                                <xsl:attribute name="descent" select="gpxslt:trk-descent(/gpx:gpx)"/>
                             </xsl:if>
                         </activity>
                     </xsl:for-each>
@@ -45,6 +46,8 @@
                 <xsl:value-of select="concat(hours-from-duration(@duration), ':', minutes-from-duration(@duration), ':', seconds-from-duration(@duration))"/>
                 <xsl:text>,</xsl:text>
                 <xsl:value-of select="@ascent"/>
+                <xsl:text>,</xsl:text>
+                <xsl:value-of select="@descent"/>
                 <xsl:text>&#xa;</xsl:text>
             </xsl:for-each>
         </xsl:result-document>
