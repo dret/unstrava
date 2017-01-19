@@ -13,7 +13,8 @@
             <xsl:variable name="eles" select="gpx:trkseg/gpx:trkpt/gpx:ele/text()"/>
             <xsl:value-of select="sum(
                 for $i in 1 to count($eles)-1
-                return if ( $eles[$i+1]-$eles[$i] gt 0.0 ) then $eles[$i+1]-$eles[$i] else 0.0 )"/>
+                return if ( $eles[$i+1]-$eles[$i] gt 0.0 ) then $eles[$i+1]-$eles[$i] else 0.0
+                )"/>
         </xsl:for-each>
     </xsl:function>
     <!-- -->
@@ -27,7 +28,8 @@
             <xsl:variable name="eles" select="gpx:trkseg/gpx:trkpt/gpx:ele/text()"/>
             <xsl:value-of select="sum(
                 for $i in 1 to count($eles)-1
-                return if ( $eles[$i]-$eles[$i+1] gt 0.0 ) then $eles[$i]-$eles[$i+1] else 0.0 )"/>
+                return if ( $eles[$i]-$eles[$i+1] gt 0.0 ) then $eles[$i]-$eles[$i+1] else 0.0
+                )"/>
         </xsl:for-each>
     </xsl:function>
     <!-- -->
